@@ -73,13 +73,15 @@ keeps teacher layers 2, 4, and 6.
 | DiVaST-3L-768H (Tables I to IV) | `kd_L3_135` (seeds: `--seed 1`, `--seed 2`) |
 | DiVaST-4L/2L/1L-768H (Table II) | `kd_L4_1235`, `kd_L2_35`, `kd_L1_5` |
 | DiVaST-6L-512H, 6L-384H, 3L-384H (Table II) | `kdn_L6_W512`, `kdn_L6_W384`, `kdn_L3_W384` |
-| Table III, Teacher (alpha=0) | `nokd_L3_135` (seeds 42, 1, 2) |
-| Table III, Init. from teacher | `kd_L3_135_init_pt` |
-| Table III, Labels (alpha=1) | `kd_L3_135_a10` |
+| Table III, Plain fine-tuning (no teacher) | `nokd_L3_135_init_pt` |
+| Table III, No soft targets (alpha=0) | `nokd_L3_135` |
+| Table III, No labels (alpha=1) | `kd_L3_135_a10` |
+| Table III, Pre-trained initialization | `kd_L3_135_init_pt` |
 | Table III, Keep first 510 tokens | test: `python src/eval_right_truncation.py models/kd_L3_135 models/kd_L3_135_s1 models/kd_L3_135_s2`; validation: `python src/val_right_truncation.py` |
 | Table III, Layers 1, 3, 5 / 1, 3, 6 | `kd_L3`, `kd_L3_025` |
 | Table III, T=1/4/8, alpha=0.8 | `kd_L3_135_T1`, `kd_L3_135_T4`, `kd_L3_135_T8`, `kd_L3_135_a08` |
-| Table III, Logit MSE, + hidden-state loss, 5 epochs | `kd_L3_135_mse`, `kd_L3_135_hid`, `kd_L3_135_ep5` |
+| Table III, Logit MSE | `kd_L3_135_mse` |
+| Table III, 1 / 2 epochs | `kd_L3_135_ep1`, `kd_L3_135_ep2` |
 | Table IV, task tags | `python src/analyze_tags.py` |
 | Teacher selection (Sec. IV) | `codeberta_small`, `codeberta_bce`, `codeberta_focal`, `codeberta_bce_left`, `codebert_base`, `graphcodebert`, ... |
 
@@ -124,8 +126,10 @@ results/
   `models/teacher`; `results/rtx4090/train_config/teacher.json` shows its arguments.
 - In `results/rtx4090/tag_*.txt`, the row labelled `VulCaST` is the model passed with
   `--model` (an earlier name of the option): `kd_L3_135` or `teacher`.
-- F1 varies across training runs (seeds 42, 1, and 2: average F1 0.9285 to 0.9299;
-  standard deviation 0.0008), and fp16 training is not bit-exact across GPUs.
+- Every row of Table III is the mean of seeds 42, 1, and 2: run each config also with
+  `--seed 1` and `--seed 2` (results named `<config>_s1`, `<config>_s2`). F1 varies
+  across training runs (DiVaST-3L-768H: average test F1 0.9285 to 0.9299, standard
+  deviation 0.0008), and fp16 training is not bit-exact across GPUs.
 
 ## License
 

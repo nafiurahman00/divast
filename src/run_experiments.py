@@ -19,7 +19,7 @@ Usage:
   python src/run_experiments.py --leaderboard   # just rebuild the leaderboard
   python src/run_experiments.py --eval-bs 256   # smaller eval batch for <16GB GPUs
   python src/run_experiments.py --only teacher kd_L3_135      # DiVaST: teacher, then student
-  python src/run_experiments.py --only kd_L3_135 --seed 1     # extra seed
+  python src/run_experiments.py --only kd_L3_135 --seed 1     # extra seed (Table III)
 """
 from __future__ import annotations
 
@@ -72,15 +72,13 @@ def _kd_row(name, layers, teacher=True, lr=3e-5, epochs=3, extra=(), max_len=400
     return (name, init, "bce", epochs, lr, max_len, 32, flags + list(extra))
 
 
-HID = ["--kd-hidden", "1.0"]
-
 
 KD_MATRIX = [
     # The teacher: CodeBERTa-small, tag-preserving (left) truncation, BCE, 3 epochs,
     # seed 42 (the codeberta_bce_left recipe). Train it first: every student reads
     # models/teacher.
     ("teacher", LEFT_BASE, "bce", 3, 3e-5, 400, 32, []),
-    # DiVaST-3L-768H, the submitted student (Table I). Seeds 1 and 2: --seed 1 / --seed 2.
+    # DiVaST-3L-768H, the submitted student (Tables I to IV). Seeds 1 and 2: --seed 1 / --seed 2.
     _kd_row("kd_L3_135", "1,3,5"),
     # Table II, layer selection (DiVaST-4L/2L/1L-768H)
     _kd_row("kd_L4_1235", "1,2,3,5"),
@@ -92,9 +90,10 @@ KD_MATRIX = [
     _kd_row("kdn_L6_W512", "", lr=1e-4, epochs=6, extra=["--student-width", "512"]),
     _kd_row("kdn_L6_W384", "", lr=1e-4, epochs=6, extra=["--student-width", "384"]),
     _kd_row("kdn_L3_W384", "1,3,5", lr=1e-4, epochs=6, extra=["--student-width", "384"]),
-    # Table III, ablations of kd_L3_135; each row changes one thing.
-    _kd_row("nokd_L3_135", "1,3,5", teacher=False),            # no teacher (alpha=0); seeds 42, 1, 2
+    # Table III, ablations of kd_L3_135 (seeds 42, 1, 2); each row changes one thing.
+    _kd_row("nokd_L3_135", "1,3,5", teacher=False),            # no soft targets (alpha=0)
     _kd_row("kd_L3_135_init_pt", "1,3,5", init=LEFT_BASE),     # pre-trained init, not the teacher
+    _kd_row("nokd_L3_135_init_pt", "1,3,5", teacher=False, init=LEFT_BASE),  # no teacher at all: pre-trained layers, labels only
     _kd_row("kd_L3_135_a10", "1,3,5", extra=["--kd-alpha", "1.0"]),  # no labels (alpha=1)
     _kd_row("kd_L3", "0,2,4"),                                 # layers 1, 3, 5 (1-based)
     _kd_row("kd_L3_025", "0,2,5"),                             # layers 1, 3, 6 (1-based)
@@ -103,9 +102,8 @@ KD_MATRIX = [
     _kd_row("kd_L3_135_T8", "1,3,5", extra=["--kd-temp", "8"]),
     _kd_row("kd_L3_135_a08", "1,3,5", extra=["--kd-alpha", "0.8"]),
     _kd_row("kd_L3_135_mse", "1,3,5", extra=["--kd-loss", "mse"]),  # logit MSE
-    _kd_row("kd_L3_135_T8_hid_ep5", "1,3,5", epochs=5, extra=["--kd-temp", "8"] + HID),  # 3-seed check
-    _kd_row("kd_L3_135_hid", "1,3,5", extra=HID),                    # + hidden-state loss
-    _kd_row("kd_L3_135_ep5", "1,3,5", epochs=5),
+    _kd_row("kd_L3_135_ep1", "1,3,5", epochs=1),                     # training length
+    _kd_row("kd_L3_135_ep2", "1,3,5", epochs=2),
     # The truncation row of Table III re-evaluates kd_L3_135 (seeds 42, 1, 2) with
     # right truncation: src/eval_right_truncation.py.
 ]

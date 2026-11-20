@@ -1,7 +1,7 @@
 {
   "model": "models/teacher",
-  "output_dir": "models/kd_L3_135_ep5",
-  "epochs": 5.0,
+  "output_dir": "models/kd_L3_135_T8_s2",
+  "epochs": 3.0,
   "bs": 32,
   "eval_bs": 128,
   "lr": 3e-05,
@@ -13,7 +13,7 @@
   "fp16": true,
   "subset": 0,
   "grad_accum": 1,
-  "seed": 42,
+  "seed": 2,
   "save_steps": 2000,
   "aug_file": [],
   "aug_mode": "add",
@@ -22,7 +22,7 @@
   "student_width": 0,
   "teacher": "models/teacher",
   "kd_alpha": 0.5,
-  "kd_temp": 2.0,
+  "kd_temp": 8.0,
   "kd_loss": "bce",
   "kd_hidden": 0.0,
   "keep_ckpt": false

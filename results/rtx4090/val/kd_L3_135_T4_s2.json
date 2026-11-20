@@ -1,0 +1,10 @@
+{
+  "eval_loss": 0.08428741991519928,
+  "eval_f1_Vulnerability": 0.9290396124251924,
+  "eval_f1_MAT": 0.9006211180124224,
+  "eval_mean_f1": 0.9148303652188075,
+  "eval_runtime": 9.112,
+  "eval_samples_per_second": 1177.462,
+  "eval_steps_per_second": 9.219,
+  "epoch": 3.0
+}

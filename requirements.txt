@@ -1,10 +1,11 @@
-# Versions used for the paper (Python 3.13, CUDA GPU). The notebook installs the same
-# transformers, datasets, and accelerate versions on Colab and keeps Colab's torch.
-torch==2.15.0
+# Versions used for the paper (Python 3.11, CUDA 12.8, RTX 4090).
+# The notebook installs only transformers, datasets, accelerate, and huggingface_hub,
+# and keeps the torch, numpy, and pandas of the Colab runtime.
+torch==2.9.1
 transformers==5.22.1
-datasets==5.1.0
-accelerate==1.15.0
+datasets==5.2.0
+accelerate==1.16.0
 huggingface_hub==2.4.0
-numpy==2.5.4
+numpy==2.4.6
 pandas==3.1.1
 tqdm==4.70.1

@@ -1,0 +1,37 @@
+{
+  "model": "models/nokd_L3_135_cal",
+  "split": "test",
+  "n": 30655,
+  "batch_size": 64,
+  "repetitions": 1,
+  "max_length": 512,
+  "amp": true,
+  "per_task": [
+    {
+      "cat": "Vulnerability",
+      "tp": 9197,
+      "fp": 575,
+      "fn": 855,
+      "tn": 20028,
+      "precision": 0.9411584117887842,
+      "recall": 0.914942300039793,
+      "f1": 0.9278652138821629
+    },
+    {
+      "cat": "MAT",
+      "tp": 441,
+      "fp": 9,
+      "fn": 64,
+      "tn": 30141,
+      "precision": 0.98,
+      "recall": 0.8732673267326733,
+      "f1": 0.9235602094240838
+    }
+  ],
+  "mean_f1": 0.9257127116531234,
+  "mean_precision": 0.960579205894392,
+  "mean_recall": 0.8941048133862332,
+  "avg_runtime_s": 15.176530599594116,
+  "avg_gflops": 666672.7373480991,
+  "score": 0.9079474717154152
+}

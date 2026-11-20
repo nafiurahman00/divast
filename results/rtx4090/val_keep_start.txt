@@ -1,0 +1,7 @@
+# python src/val_right_truncation.py  (validation split, 400 tokens, threshold 0.5)
+kd_L3_135 left mean 0.9163 Vulnerability 0.9286 MAT 0.9040 (recorded 0.9163)
+kd_L3_135 right mean 0.9107 Vulnerability 0.9312 MAT 0.8903 (recorded 0.9163)
+kd_L3_135_s1 left mean 0.9135 Vulnerability 0.9264 MAT 0.9006 (recorded 0.9135)
+kd_L3_135_s1 right mean 0.9105 Vulnerability 0.9307 MAT 0.8903 (recorded 0.9135)
+kd_L3_135_s2 left mean 0.9148 Vulnerability 0.9290 MAT 0.9006 (recorded 0.9148)
+kd_L3_135_s2 right mean 0.9114 Vulnerability 0.9325 MAT 0.8903 (recorded 0.9148)

@@ -1,0 +1,48 @@
+{
+  "splits": {
+    "train": {
+      "n": 214586,
+      "vuln_positive": 70372,
+      "vuln_positive_rate": 0.3279431090565088,
+      "mat_positive": 3539,
+      "mat_positive_rate": 0.01649222223257808,
+      "joint_distribution": {
+        "[0,0]": 143022,
+        "[0,1]": 1192,
+        "[1,0]": 68025,
+        "[1,1]": 2347
+      }
+    },
+    "test": {
+      "n": 30655,
+      "vuln_positive": 10052,
+      "vuln_positive_rate": 0.32790735605937044,
+      "mat_positive": 505,
+      "mat_positive_rate": 0.016473658457021693,
+      "joint_distribution": {
+        "[0,0]": 20433,
+        "[0,1]": 170,
+        "[1,0]": 9717,
+        "[1,1]": 335
+      }
+    }
+  },
+  "pos_weight": {
+    "Vulnerability": 2.0493093844142556,
+    "MAT": 59.6346425543939
+  },
+  "train_token_lengths": {
+    "tokenizer": "microsoft/codebert-base",
+    "mean": 234.35795438658627,
+    "max": 2745,
+    "percentiles": {
+      "p50": 176,
+      "p75": 327,
+      "p90": 522,
+      "p95": 633,
+      "p99": 788
+    },
+    "frac_over_256": 0.3446124164670575,
+    "frac_over_512": 0.10523053694090015
+  }
+}

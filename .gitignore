@@ -1,0 +1,9 @@
+# Trained models and caches (the released model is on the Hugging Face Hub)
+models/
+release/
+upload/
+divast_replication*/
+.hf_cache/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

@@ -1,0 +1,22 @@
+TRAINING SET: 3,539 SATD-positive functions, 3,085 with a task tag
+  CodeBERT, keep start   tag inside: 2,888 | hidden: 197
+  CodeBERTa, keep start  tag inside: 3,033 | hidden: 52
+  CodeBERTa, keep end    tag inside: 3,049 | hidden: 36
+
+TEST SET: 30,655 functions
+  CodeBERT   median length 175 tokens | truncated: all 10.6%, SATD-positive 34.65%, vulnerable 21.7%
+  CodeBERTa  median length 144 tokens | truncated: all 4.9%, SATD-positive 18.61%, vulnerable 10.4%
+             tokens removed from truncated functions: median 61, p90 129, max 211
+  505 SATD-positive functions, 444 with a task tag, 61 without
+  CodeBERT, keep start   tag inside: 405
+  CodeBERTa, keep start  tag inside: 432
+  CodeBERTa, keep end    tag inside: 441
+
+KEYWORD RULE (SATD if a tag occurs as a word, any case): P 0.9845 | R 0.8792 | F1 0.9289
+
+SATD-POSITIVE TEST FUNCTIONS DETECTED (threshold 0.5, fp16 on GPU)
+  baseline             keeps the start | tag inside 405 | detected 405 | tag inside and detected 405 | detected without a tag inside 0 | missed 100, of which without any tag 61
+  distilroberta_cal    skipped: models/distilroberta_cal not found
+  codeberta_small_cal  skipped: models/codeberta_small_cal not found
+  codeberta_bce_cal    skipped: models/codeberta_bce_cal not found
+  VulCaST              keeps the end | tag inside 441 | detected 440 | tag inside and detected 440 | detected without a tag inside 0 | missed 65, of which without any tag 61

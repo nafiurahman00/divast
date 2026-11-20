@@ -1,0 +1,46 @@
+{
+  "model": "divast_4L_768H",
+  "split": "test",
+  "n": 30655,
+  "batch_size": 600,
+  "repetitions": 10,
+  "max_length": 512,
+  "amp": true,
+  "per_task": [
+    {
+      "cat": "Vulnerability",
+      "tp": 9441,
+      "fp": 698,
+      "fn": 611,
+      "tn": 19905,
+      "precision": 0.9311569188282868,
+      "recall": 0.9392160764027059,
+      "f1": 0.9351691347630131
+    },
+    {
+      "cat": "MAT",
+      "tp": 441,
+      "fp": 5,
+      "fn": 64,
+      "tn": 30145,
+      "precision": 0.9887892376681614,
+      "recall": 0.8732673267326733,
+      "f1": 0.9274447949526814
+    }
+  ],
+  "mean_f1": 0.9313069648578473,
+  "mean_precision": 0.9599730782482241,
+  "mean_recall": 0.9062417015676896,
+  "avg_runtime_s": 84.2892677783966,
+  "avg_gflops": 888876.8453831675,
+  "score": 0.8826678690001513,
+  "source": "/content/drive/MyDrive/divast_t4/models/divast_4L_768H",
+  "env": {
+    "gpu": "Tesla T4",
+    "torch": "2.14.1+cu130",
+    "transformers": "5.22.1",
+    "datasets": "4.8.5",
+    "finished_utc": "2026-11-19T22:02:22+00:00",
+    "wall_clock_min": 15.6
+  }
+}

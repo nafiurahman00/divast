@@ -1,0 +1,46 @@
+{
+  "model": "baseline",
+  "split": "test",
+  "n": 30655,
+  "batch_size": 600,
+  "repetitions": 10,
+  "max_length": 512,
+  "amp": true,
+  "per_task": [
+    {
+      "cat": "Vulnerability",
+      "tp": 9402,
+      "fp": 572,
+      "fn": 650,
+      "tn": 20031,
+      "precision": 0.9426508923200321,
+      "recall": 0.9353362514922403,
+      "f1": 0.9389793268750625
+    },
+    {
+      "cat": "MAT",
+      "tp": 405,
+      "fp": 9,
+      "fn": 100,
+      "tn": 30141,
+      "precision": 0.9782608695652174,
+      "recall": 0.801980198019802,
+      "f1": 0.8813928182807399
+    }
+  ],
+  "mean_f1": 0.9101860725779012,
+  "mean_precision": 0.9604558809426247,
+  "mean_recall": 0.8686582247560212,
+  "avg_runtime_s": 242.60897827148438,
+  "avg_gflops": 2666509.7131617307,
+  "score": 0.7198225336816618,
+  "source": "NLBSE/nlbse27-code-comment-classification-baseline",
+  "env": {
+    "gpu": "Tesla T4",
+    "torch": "2.14.1+cu130",
+    "transformers": "5.22.1",
+    "datasets": "4.8.5",
+    "finished_utc": "2026-11-19T21:13:31+00:00",
+    "wall_clock_min": 43.7
+  }
+}
